@@ -16,7 +16,8 @@
     "@fontsource/poppins": "^4.5.5",
     "framer-motion": "^6",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "recoil": "^0.7.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
