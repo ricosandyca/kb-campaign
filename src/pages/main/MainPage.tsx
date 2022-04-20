@@ -9,7 +9,7 @@ const MainPage: FC = () => {
   const { campaigns } = useCampaignListFetcher();
 
   return (
-    <Box py={16}>
+    <Box>
       <CampaignList campaigns={campaigns} />
     </Box>
   );

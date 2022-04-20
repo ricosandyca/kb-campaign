@@ -34,8 +34,8 @@ export default extendTheme({
     body: "Inter, 'sans-serif'",
   },
   colors: {
-    primary: colors.green,
-    secondary: colors.yellow,
+    primary: colors.blue,
+    secondary: colors.cyan,
   },
   semanticTokens: {
     colors: {

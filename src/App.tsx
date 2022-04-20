@@ -1,14 +1,10 @@
-import { Box } from '@chakra-ui/react';
 import { FC } from 'react';
 
+import { withShell } from '~/hoc/with-shell';
 import MainPage from '~/pages/main/MainPage';
 
 const App: FC = () => {
-  return (
-    <Box py={16}>
-      <MainPage />
-    </Box>
-  );
+  return <MainPage />;
 };
 
-export default App;
+export default withShell(App);
