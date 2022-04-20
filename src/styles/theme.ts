@@ -24,8 +24,8 @@ export default extendTheme({
   styles: {
     global: () => ({
       body: {
-        color: 'text',
-        bg: 'bg',
+        bg: 'gray.100',
+        color: 'gray.700',
       },
     }),
   },
@@ -46,18 +46,6 @@ export default extendTheme({
       secondary: {
         default: 'secondary.500',
         _dark: 'secondary.300',
-      },
-      bg: {
-        default: 'white',
-        _dark: 'gray.800',
-      },
-      fg: {
-        default: 'gray.100',
-        _dark: 'gray.900',
-      },
-      text: {
-        default: 'gray.800',
-        _dark: 'white',
       },
     },
   },

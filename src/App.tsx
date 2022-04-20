@@ -1,13 +1,14 @@
+import { Box } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import { withContainer } from '~/hoc/with-container';
-import { useCampaignListFetcher } from '~/hooks/use-campaign';
-import CampaignList from '~/components/CampaignList';
+import MainPage from '~/pages/main/MainPage';
 
 const App: FC = () => {
-  const { campaigns } = useCampaignListFetcher();
-
-  return <CampaignList campaigns={campaigns} />;
+  return (
+    <Box py={16}>
+      <MainPage />
+    </Box>
+  );
 };
 
-export default withContainer(App);
+export default App;

@@ -1,5 +1,7 @@
-import { FC } from 'react';
+import { SimpleGrid } from '@chakra-ui/react';
+import { FC, memo } from 'react';
 
+import CampaignItem from '~/components/CampaignItem';
 import { Campaign } from '~/types/campaign';
 
 export type CampaignListProps = {
@@ -7,8 +9,13 @@ export type CampaignListProps = {
 };
 
 const CampaignList: FC<CampaignListProps> = ({ campaigns }) => {
-  console.log(campaigns);
-  return null;
+  return (
+    <SimpleGrid columns={[1, null, 2, 3]} spacing={6}>
+      {campaigns.map((campaign) => (
+        <CampaignItem key={campaign.id} campaign={campaign} />
+      ))}
+    </SimpleGrid>
+  );
 };
 
-export default CampaignList;
+export default memo(CampaignList);
