@@ -1,4 +1,4 @@
-import { Box, Heading, HStack } from '@chakra-ui/react';
+import { Box, Heading, HStack, Image } from '@chakra-ui/react';
 import { FC, memo, ReactNode } from 'react';
 
 import CampaignSortSelect from '~/components/CampaignSortSelect';
@@ -14,15 +14,9 @@ const AppBarContent: FC = withContainer(() => {
     <HStack h="full" w="full" align="center">
       {/* App logo */}
       <HStack flex={1}>
-        <Box
-          borderColor="primary.200"
-          borderWidth="2px"
-          borderRadius="full"
-          h="50px"
-          w="50px"
-          backgroundImage="/kitabisa-logo.png"
-          backgroundSize="100%"
-        />
+        <Box borderColor="primary.200" borderWidth="2px" borderRadius="full">
+          <Image alt="App logo" src="/kitabisa-logo.png" h="50px" w="50px" />
+        </Box>
         <Heading color="primary.400" fontWeight="500" fontSize="xl">
           {appConfig.appName}
         </Heading>
