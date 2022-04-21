@@ -8,10 +8,9 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react';
-import { FC, memo, useCallback, useMemo } from 'react';
-import { useRecoilState } from 'recoil';
+import { FC, memo, useMemo } from 'react';
+import { useSortCampaignAction } from '~/hooks/use-campaign';
 
-import { campaignSortState } from '~/store/campaign';
 import { Campaign } from '~/types/campaign';
 
 export type SortParam = {
@@ -22,11 +21,8 @@ export type SortParam = {
 };
 
 const CampaignSortSelect: FC = () => {
-  const [sortValue, setSortValue] = useRecoilState(campaignSortState);
-
-  const isFilterActive = useMemo(() => {
-    return Object.values(sortValue).some((val) => val !== 0);
-  }, [sortValue]);
+  const { isFilterActive, activeKeys, handleToggleSortParam } =
+    useSortCampaignAction();
 
   const sortParams = useMemo<SortParam[]>(() => {
     return [
@@ -34,23 +30,16 @@ const CampaignSortSelect: FC = () => {
         id: 'days_remaining',
         value: 1, // ascending
         label: 'Hari tersisa',
-        isActive: !!sortValue.days_remaining,
+        isActive: activeKeys.includes('days_remaining'),
       },
       {
         id: 'donation_target',
         value: 1, // ascending
         label: 'Target donasi',
-        isActive: !!sortValue.donation_target,
+        isActive: activeKeys.includes('donation_target'),
       },
     ];
-  }, [sortValue]);
-
-  const toggleSetSortValue = useCallback(
-    (sortKey: keyof Campaign, sortVal: number) => {
-      setSortValue((prev) => ({ ...prev, [sortKey]: sortVal }));
-    },
-    [],
-  );
+  }, [activeKeys]);
 
   return (
     <Menu isLazy placement="bottom-end" closeOnSelect={false}>
@@ -68,9 +57,7 @@ const CampaignSortSelect: FC = () => {
           <MenuItem
             key={i}
             fontSize="sm"
-            onClick={() =>
-              toggleSetSortValue(sp.id, sp.isActive ? 0 : sp.value)
-            }
+            onClick={() => handleToggleSortParam(sp.id, sp.value)}
             icon={
               <Box
                 rounded="full"

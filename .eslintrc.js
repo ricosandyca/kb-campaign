@@ -23,11 +23,17 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/no-unused-vars': 'error',
     'prettier/prettier': 'warn',
     'react/prop-types': 'off',
     'react/no-children-prop': 'off',
     'no-useless-escape': 'off',
     'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
   },
 };
