@@ -39,7 +39,7 @@ const Shell: FC<ShellProps> = ({ children }) => {
         h="80px"
         zIndex={2}
         bg="whiteAlpha.800"
-        backdropFilter="blur(5px) saturate(180%)"
+        backdropFilter="blur(8px) saturate(360%)"
         shadow="sm"
       >
         <AppBarContent />

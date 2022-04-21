@@ -79,6 +79,7 @@ const CampaignItem: FC<CampaignItemProps> = ({ campaign }) => {
               <Progress
                 w="full"
                 h="6px"
+                aria-label="Donation progress"
                 colorScheme={isReachedDonationGoal ? 'pink' : 'gray'}
                 value={campaign.donation_percentage * 100}
                 rounded="xl"
