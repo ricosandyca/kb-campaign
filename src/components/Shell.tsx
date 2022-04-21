@@ -52,7 +52,7 @@ const Shell: FC<ShellProps> = ({ children }) => {
       </Box>
 
       {/* Main content */}
-      <Box py={['100px', null, null, null, '120px']} zIndex={1}>
+      <Box pt={['100px', null, null, null, '120px']} pb="60px" zIndex={1}>
         {children}
       </Box>
     </Box>
