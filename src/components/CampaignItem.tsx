@@ -1,4 +1,12 @@
-import { Box, HStack, Image, Progress, Text, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  HStack,
+  Image,
+  Progress,
+  Text,
+  Tooltip,
+  VStack,
+} from '@chakra-ui/react';
 import { FC, memo, useMemo } from 'react';
 
 import { Campaign } from '~/types/campaign';
@@ -12,6 +20,13 @@ const CampaignItem: FC<CampaignItemProps> = ({ campaign }) => {
   const isReachedDonationGoal = useMemo(() => {
     return campaign.donation_percentage >= 1;
   }, [campaign.donation_percentage]);
+
+  const donationInfo = useMemo(() => {
+    const received = formatToIDR(campaign.donation_received, true);
+    const target = formatToIDR(campaign.donation_target, true);
+    return `${received} / ${target}`;
+  }, [campaign.donation_received, campaign.donation_target]);
+
   const campaignDetails = useMemo(() => {
     return [
       {
@@ -34,7 +49,6 @@ const CampaignItem: FC<CampaignItemProps> = ({ campaign }) => {
       rounded="lg"
       position="relative"
       overflow="hidden"
-      title={campaign.title}
     >
       {/* Campaign image */}
       <Image src={campaign.image} h="260px" w="full" objectFit="cover" />
@@ -48,18 +62,23 @@ const CampaignItem: FC<CampaignItemProps> = ({ campaign }) => {
             fontWeight="semibold"
             noOfLines={1}
             textTransform="capitalize"
+            title={campaign.title}
           >
             {campaign.title}
           </Text>
 
           {/* Campaign progress */}
-          <Progress
-            w="full"
-            size="xs"
-            colorScheme={isReachedDonationGoal ? 'pink' : 'gray'}
-            value={campaign.donation_percentage * 100}
-            rounded="xl"
-          />
+          <Tooltip label={donationInfo} hasArrow rounded="md">
+            <Box w="full">
+              <Progress
+                w="full"
+                h="6px"
+                colorScheme={isReachedDonationGoal ? 'pink' : 'gray'}
+                value={campaign.donation_percentage * 100}
+                rounded="xl"
+              />
+            </Box>
+          </Tooltip>
 
           {/* Campaign detail */}
           <HStack w="full" justify="space-between">
