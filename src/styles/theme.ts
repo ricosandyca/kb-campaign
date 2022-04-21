@@ -35,17 +35,12 @@ export default extendTheme({
   },
   colors: {
     primary: colors.blue,
-    secondary: colors.cyan,
   },
   semanticTokens: {
     colors: {
       primary: {
         default: 'primary.500',
         _dark: 'primary.300',
-      },
-      secondary: {
-        default: 'secondary.500',
-        _dark: 'secondary.300',
       },
     },
   },

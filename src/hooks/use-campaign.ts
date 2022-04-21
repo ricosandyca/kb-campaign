@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { fetchCampaigns } from '~/services/campaign';
-import { campaignListState } from '~/store/campaign';
+import { campaignListState, sortedCampaignListState } from '~/store/campaign';
 
 export function useCampaignListFetcher() {
   const [campaigns, setCampaigns] = useRecoilState(campaignListState);
+  const sortedCampaigns = useRecoilValue(sortedCampaignListState);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,5 +17,5 @@ export function useCampaignListFetcher() {
       .finally(() => setIsLoading(false));
   }, []);
 
-  return { campaigns, isLoading, error };
+  return { campaigns, sortedCampaigns, isLoading, error };
 }

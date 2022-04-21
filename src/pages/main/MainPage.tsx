@@ -7,14 +7,14 @@ import CampaignList from '~/components/CampaignList';
 import CampaignListLoading from '~/components/CampaignListLoading';
 
 const MainPage: FC = () => {
-  const { campaigns, isLoading } = useCampaignListFetcher();
+  const { sortedCampaigns, isLoading } = useCampaignListFetcher();
 
   return (
     <Box>
       {isLoading ? (
         <CampaignListLoading noOfSkeletons={9} />
       ) : (
-        <CampaignList campaigns={campaigns} />
+        <CampaignList campaigns={sortedCampaigns} />
       )}
     </Box>
   );

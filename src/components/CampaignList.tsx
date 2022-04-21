@@ -10,7 +10,7 @@ export type CampaignListProps = {
 
 const CampaignList: FC<CampaignListProps> = ({ campaigns }) => {
   return (
-    <SimpleGrid columns={[1, null, 2, 3]} spacing={8}>
+    <SimpleGrid columns={[1, null, 2, 2, 3]} spacing={8}>
       {campaigns.map((campaign) => (
         <CampaignItem key={campaign.id} campaign={campaign} />
       ))}

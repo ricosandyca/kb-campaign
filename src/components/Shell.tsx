@@ -1,6 +1,7 @@
 import { Box, Heading, HStack } from '@chakra-ui/react';
 import { FC, memo, ReactNode } from 'react';
 
+import CampaignSortSelect from '~/components/CampaignSortSelect';
 import appConfig from '~/config/app';
 import { withContainer } from '~/hoc/with-container';
 
@@ -12,7 +13,7 @@ const AppBarContent: FC = withContainer(() => {
   return (
     <HStack h="full" w="full" align="center">
       {/* App logo */}
-      <HStack>
+      <HStack flex={1}>
         <Box
           borderColor="primary.200"
           borderWidth="2px"
@@ -26,6 +27,9 @@ const AppBarContent: FC = withContainer(() => {
           {appConfig.appName}
         </Heading>
       </HStack>
+
+      {/* Campaign sort */}
+      <CampaignSortSelect />
     </HStack>
   );
 });
@@ -48,7 +52,7 @@ const Shell: FC<ShellProps> = ({ children }) => {
       </Box>
 
       {/* Main content */}
-      <Box py="130px" zIndex={1}>
+      <Box py={['100px', null, null, null, '120px']} zIndex={1}>
         {children}
       </Box>
     </Box>

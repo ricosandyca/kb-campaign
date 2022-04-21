@@ -9,7 +9,7 @@ export const campaignListState = atom<Campaign[]>({
 
 // -1 to sort descendingly
 // 1 to sort ascendingly
-export const compaignSortState = atom<Partial<Record<keyof Campaign, 1 | -1>>>({
+export const campaignSortState = atom<Partial<Record<keyof Campaign, number>>>({
   key: 'compaignSortState',
   default: {},
 });
@@ -17,12 +17,15 @@ export const compaignSortState = atom<Partial<Record<keyof Campaign, 1 | -1>>>({
 export const sortedCampaignListState = selector<Campaign[]>({
   key: 'sortedCampaignListState',
   get: ({ get }) => {
-    const campaigns = get(campaignListState);
-    const sortValue = get(compaignSortState);
+    const campaigns = [...get(campaignListState)];
+    const sortValue = get(campaignSortState);
+
+    const sortKeys = Object.keys(sortValue) as (keyof Campaign)[];
+    if (sortKeys.length <= 0) return campaigns;
 
     // sort campaigns
     campaigns.sort((a, b) => {
-      for (const key of Object.keys(sortValue) as (keyof Campaign)[]) {
+      for (const key of sortKeys) {
         // check value type
         let comparisonResult: number;
         if (typeof a[key] === 'number') {
