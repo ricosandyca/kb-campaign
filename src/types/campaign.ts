@@ -3,7 +3,7 @@ export enum CampaignType {
 }
 
 export type Campaign = {
-  id: string;
+  id: number;
   order: number;
   parent_project_id: number;
   title: string;

@@ -1,4 +1,4 @@
-import { createArray, sortArrayOfObject } from '../array';
+import { createArray, sortArrayOfObject } from '~/utils/array';
 
 describe('createArray function testing', () => {
   it('Should create array with valid length', () => {

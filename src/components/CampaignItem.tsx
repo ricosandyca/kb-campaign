@@ -51,7 +51,13 @@ const CampaignItem: FC<CampaignItemProps> = ({ campaign }) => {
       overflow="hidden"
     >
       {/* Campaign image */}
-      <Image src={campaign.image} h="260px" w="full" objectFit="cover" />
+      <Image
+        alt={campaign.title}
+        src={campaign.image}
+        h="260px"
+        w="full"
+        objectFit="cover"
+      />
 
       {/* Campaign info */}
       <Box p={4} w="full">

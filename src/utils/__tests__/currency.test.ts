@@ -1,4 +1,4 @@
-import { formatToIDR } from '../currency';
+import { formatToIDR } from '~/utils/currency';
 
 describe('formatToIDR function testing', () => {
   it('Should convert number to IDR format', () => {
