@@ -2,7 +2,6 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
-  HStack,
   Menu,
   MenuButton,
   MenuItem,
@@ -54,7 +53,7 @@ const CampaignSortSelect: FC = () => {
   );
 
   return (
-    <Menu isLazy placement="bottom-end">
+    <Menu isLazy placement="bottom-end" closeOnSelect={false}>
       <MenuButton
         as={Button}
         rightIcon={<ChevronDownIcon />}
@@ -68,16 +67,20 @@ const CampaignSortSelect: FC = () => {
         {sortParams.map((sp, i) => (
           <MenuItem
             key={i}
+            fontSize="sm"
             onClick={() =>
               toggleSetSortValue(sp.id, sp.isActive ? 0 : sp.value)
             }
+            icon={
+              <Box
+                rounded="full"
+                w="10px"
+                h="10px"
+                bg={sp.isActive ? 'primary' : 'gray.500'}
+              />
+            }
           >
-            <HStack w="full">
-              <Text flex={1}>{sp.label}</Text>
-              {sp.isActive && (
-                <Box rounded="full" w="8px" h="8px" bg="primary.500" />
-              )}
-            </HStack>
+            <Text flex={1}>{sp.label}</Text>
           </MenuItem>
         ))}
       </MenuList>
