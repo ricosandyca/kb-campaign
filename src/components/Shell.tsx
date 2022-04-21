@@ -1,6 +1,7 @@
-import { Box, HStack, Image } from '@chakra-ui/react';
+import { Box, Heading, HStack } from '@chakra-ui/react';
 import { FC, memo, ReactNode } from 'react';
 
+import appConfig from '~/config/app';
 import { withContainer } from '~/hoc/with-container';
 
 export type ShellProps = {
@@ -11,7 +12,20 @@ const AppBarContent: FC = withContainer(() => {
   return (
     <HStack h="full" w="full" align="center">
       {/* App logo */}
-      <Image position="relative" h="40px" ml="-8px" src="/kitabisa-logo.png" />
+      <HStack>
+        <Box
+          borderColor="primary.200"
+          borderWidth="2px"
+          borderRadius="full"
+          h="50px"
+          w="50px"
+          backgroundImage="/kitabisa-logo.png"
+          backgroundSize="100%"
+        />
+        <Heading color="primary.400" fontWeight="500" fontSize="xl">
+          {appConfig.appName}
+        </Heading>
+      </HStack>
     </HStack>
   );
 });
@@ -23,8 +37,8 @@ const Shell: FC<ShellProps> = ({ children }) => {
       <Box
         position="fixed"
         top={0}
-        w="100vw"
-        h="90px"
+        w="full"
+        h="80px"
         zIndex={2}
         bg="whiteAlpha.800"
         backdropFilter="blur(5px) saturate(180%)"

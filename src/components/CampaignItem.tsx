@@ -1,4 +1,4 @@
-import { Box, Image, Text } from '@chakra-ui/react';
+import { Box, Image, Progress, Text, VStack } from '@chakra-ui/react';
 import { FC, memo } from 'react';
 
 import { Campaign } from '~/types/campaign';
@@ -15,6 +15,7 @@ const CampaignItem: FC<CampaignItemProps> = ({ campaign }) => {
       rounded="lg"
       position="relative"
       overflow="hidden"
+      title={campaign.title}
     >
       {/* Campaign image */}
       <Box h="240px" position="relative">
@@ -30,15 +31,27 @@ const CampaignItem: FC<CampaignItemProps> = ({ campaign }) => {
       </Box>
 
       {/* Campaign info */}
-      <Box p={4}>
-        <Text
-          fontSize="md"
-          fontWeight="500"
-          noOfLines={2}
-          textTransform="capitalize"
-        >
-          {campaign.title}
-        </Text>
+      <Box p={4} w="full">
+        <VStack w="full" align="flex-start">
+          {/* Campaign title */}
+          <Text
+            fontSize="md"
+            fontWeight="500"
+            noOfLines={1}
+            textTransform="capitalize"
+          >
+            {campaign.title}
+          </Text>
+
+          {/* Campaign progress */}
+          <Progress
+            w="full"
+            size="xs"
+            colorScheme="primary"
+            value={50}
+            rounded="xl"
+          />
+        </VStack>
       </Box>
     </Box>
   );
