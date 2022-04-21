@@ -1,42 +1,51 @@
-import { Box, Image, Progress, Text, VStack } from '@chakra-ui/react';
-import { FC, memo } from 'react';
+import { Box, HStack, Image, Progress, Text, VStack } from '@chakra-ui/react';
+import { FC, memo, useMemo } from 'react';
 
 import { Campaign } from '~/types/campaign';
+import { formatToIDR } from '~/utils/currency';
 
 export type CampaignItemProps = {
   campaign: Campaign;
 };
 
 const CampaignItem: FC<CampaignItemProps> = ({ campaign }) => {
+  const isReachedDonationGoal = useMemo(() => {
+    return campaign.donation_percentage >= 1;
+  }, [campaign.donation_percentage]);
+  const campaignDetails = useMemo(() => {
+    return [
+      {
+        label: 'Terkumpul',
+        value: formatToIDR(campaign.donation_received, true),
+        align: 'flex-start',
+      },
+      {
+        label: 'Sisa hari',
+        value: campaign.days_remaining,
+        align: 'flex-end',
+      },
+    ];
+  }, [campaign]);
+
   return (
     <Box
       bg="white"
-      shadow="lg"
+      shadow="md"
       rounded="lg"
       position="relative"
       overflow="hidden"
       title={campaign.title}
     >
       {/* Campaign image */}
-      <Box h="240px" position="relative">
-        <Image src={campaign.image} h="full" objectFit="cover" />
-        <Box
-          w="full"
-          h="full"
-          bg="whiteAlpha.500"
-          position="absolute"
-          top={0}
-          left={0}
-        />
-      </Box>
+      <Image src={campaign.image} h="260px" w="full" objectFit="cover" />
 
       {/* Campaign info */}
       <Box p={4} w="full">
         <VStack w="full" align="flex-start">
           {/* Campaign title */}
           <Text
-            fontSize="md"
-            fontWeight="500"
+            fontSize="lg"
+            fontWeight="semibold"
             noOfLines={1}
             textTransform="capitalize"
           >
@@ -47,10 +56,22 @@ const CampaignItem: FC<CampaignItemProps> = ({ campaign }) => {
           <Progress
             w="full"
             size="xs"
-            colorScheme="primary"
-            value={50}
+            colorScheme={isReachedDonationGoal ? 'pink' : 'gray'}
+            value={campaign.donation_percentage * 100}
             rounded="xl"
           />
+
+          {/* Campaign detail */}
+          <HStack w="full" justify="space-between">
+            {campaignDetails.map((detail, i) => (
+              <VStack key={i} align={detail.align} spacing={1}>
+                <Text fontSize="sm">{detail.label}</Text>
+                <Text fontSize="sm" fontWeight="semibold">
+                  {detail.value}
+                </Text>
+              </VStack>
+            ))}
+          </HStack>
         </VStack>
       </Box>
     </Box>

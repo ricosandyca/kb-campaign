@@ -15,7 +15,7 @@ const CampaignListLoading: FC<CampaignListLoadingProps> = ({
   return (
     <SimpleGrid columns={[1, null, 2, 3]} spacing={8}>
       {nums.map((n) => (
-        <Skeleton key={n} w="full" h="300px" />
+        <Skeleton key={n} w="full" h="380px" />
       ))}
     </SimpleGrid>
   );
